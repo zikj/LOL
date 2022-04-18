@@ -1,15 +1,10 @@
-'''  1.执行cmd命令，不显示执行过程中弹出的黑框'''
-
-def run_cmd(str="curl --version",echo_print=1):
-    from subprocess import run
-    if echo_print ==1:
-        print('n\执行cmd命令="{}"'.format(str))
-    run(str)
-
-
-
-
-
+import warnings
+import LcuApi
+# https://127.0.0.1:53549
+# bhrrxPKFav1TgaVs5mehp
 if __name__ == '__main__':
-    run_cmd(str)
-    '''run_cmd_Popen_fileno(str)'''
+    LcuApi.get_active(token="f2Xo-czmxmVDfBXlxoLvyQ", address="https://127.0.0.1:64727")
+
+
+
+
