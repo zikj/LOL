@@ -8,15 +8,14 @@ connector = Connector()
 # 查看战绩
 #-----------------------------------------------------------------------------
 async def macth_history(connection):
-  # 获取自定义模式电脑玩家列表
-  activedata = await connection.request('GET', '/lol-match-history/v3/matchlist/account/4050855651')
+  activedata = await connection.request('GET', '/lol-match-history/v3/matchlist/account/4124031491')
   macth = await activedata.json()
   print(macth)
 
 ##获取房间内最新的一条消息
 async  def get_chat(connection):
     activedata = await connection.request('GET','/lol-chat/v1/conversations/')
-    macth = await activedata.json().encode('gbk').decode("utf-8")
+    macth = await activedata.json()
     print(macth)
 #-----------------------------------------------------------------------------
 # websocket
@@ -27,13 +26,15 @@ async def connect(connection):
 
     await LcuApi.create_custom_lobby(connection)
     await LcuApi.add_bots_team1(connection)
-    await LcuApi.add_bots_team2(connection)
-    while True:
-        time.sleep(1)
-        state = LcuApi.get_active(token=connection.auth_key,address=connection.address)
-        if state =="true":
-            print("--------------------启动牛马分析程序------------------------")
-    #await get_chat(connection)
+    await macth_history(connection)
+    #await LcuApi.add_bots_team2(connection)
+    # while True:
+    #     time.sleep(1)
+    #     state = LcuApi.get_active(token=connection.auth_key,address=connection.address)
+    #     if state =="true":
+    #         await get_chat(connection)
+    #         print("--------------------启动牛马分析程序------------------------")
+
     #await LcuApi.get_accountid(token=connection.auth_key, address=connection.address, accountID=summonerId)
 
     #await LcuApi.get_team_session(connection.address,connection.auth_key)
